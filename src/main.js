@@ -9,6 +9,7 @@ import createGeometries from "./utilities/createGeometries";
 
 import basicVert from "./shaders/basic.vert";
 import basicFrag from "./shaders/basic.frag";
+import plasmaFrag from "./shaders/plasma.frag";
 
 import RegularHyperbolicTesselation from "./utilities/RegularHyperbolicTesselation.js";
 
@@ -196,7 +197,8 @@ class Main {
         [1, 1],
         [1, 0],
       ],
-      minPolygonSize: 0.01,
+      // minPolygonSize: 0.01,
+      minPolygonSize: 0.0025,
     };
   }
 
@@ -225,17 +227,28 @@ class Main {
 
       const material = new THREE.RawShaderMaterial({
         uniforms: {
+          u_time: { value: performance.now() },
+          u_wrap: { value: 1 },
+          u_k: { value: [50, 50] },
           tileTexture: {
             value: texture,
           },
         },
         vertexShader: basicVert,
-        fragmentShader: basicFrag,
+        // fragmentShader: basicFrag,
+        fragmentShader: plasmaFrag,
         side: THREE.DoubleSide,
       });
 
       this.pattern.push(material);
     }
+
+    const draw = (currentTimestamp) => {
+      this.pattern[0].uniforms['u_time'].value = currentTimestamp / 1000;
+      this.pattern[1].uniforms['u_time'].value = currentTimestamp / -1000;
+      window.requestAnimationFrame(draw);
+    };
+    window.requestAnimationFrame(draw);
   }
 }
 
