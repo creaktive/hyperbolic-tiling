@@ -228,8 +228,8 @@ class Main {
       const material = new THREE.RawShaderMaterial({
         uniforms: {
           u_time: { value: performance.now() },
-          u_wrap: { value: 1 },
-          u_k: { value: [50, 50] },
+          u_wrap: { value: 9 },
+          u_k: { value: [3, 8] },
           tileTexture: {
             value: texture,
           },
