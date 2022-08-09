@@ -181,8 +181,8 @@ class Main {
 
     this.spec = {
       wireframe: false,
-      p: 6,
-      q: 6,
+      p: 12,
+      q: 4,
       radius: 100,
       textures: [`${imagesPath}fish-black.png`, `${imagesPath}fish-white.png`],
       edgeAdjacency: [
