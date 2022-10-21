@@ -33,7 +33,7 @@ float noise (in vec2 _st) {
             (d - b) * u.x * u.y;
 }
 
-#define NUM_OCTAVES 5
+#define NUM_OCTAVES 10
 
 float fbm ( in vec2 _st) {
     float v = 0.0;
@@ -66,9 +66,9 @@ void main() {
 
     float f = fbm(st+r);
 
-//     color = mix(vec3(0.101961,0.619608,0.666667),
-//                 vec3(0.666667,0.666667,0.498039),
-//                 clamp((f*f)*4.0,0.0,1.0));
+    color = mix(vec3(0.101961,0.619608,0.666667),
+                vec3(0.666667,0.666667,0.498039),
+                clamp((f*f)*4.0,0.0,1.0));
 
     color = mix(color,
                 vec3(0.0,0.0,1.0),
