@@ -10,6 +10,8 @@ import createGeometries from "./utilities/createGeometries";
 import basicVert from "./shaders/basic.vert";
 import basicFrag from "./shaders/basic.frag";
 import plasmaFrag from "./shaders/plasma.frag";
+import voronoiFrag from "./shaders/2d-voronoi.frag";
+import noiseFrag from "./shaders/noise.frag";
 
 import RegularHyperbolicTesselation from "./utilities/RegularHyperbolicTesselation.js";
 
@@ -181,8 +183,8 @@ class Main {
 
     this.spec = {
       wireframe: false,
-      p: 12,
-      q: 4,
+      p: 6,
+      q: 6,
       radius: 100,
       textures: [`${imagesPath}fish-black.png`, `${imagesPath}fish-white.png`],
       edgeAdjacency: [
@@ -230,13 +232,16 @@ class Main {
           u_time: { value: performance.now() },
           u_wrap: { value: 9 },
           u_k: { value: [3, 8] },
+          u_resolution: { value: [666, 666] },
           tileTexture: {
             value: texture,
           },
         },
         vertexShader: basicVert,
         // fragmentShader: basicFrag,
-        fragmentShader: plasmaFrag,
+        // fragmentShader: plasmaFrag,
+        // fragmentShader: voronoiFrag,
+        fragmentShader: noiseFrag,
         side: THREE.DoubleSide,
       });
 
