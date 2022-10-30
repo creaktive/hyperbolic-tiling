@@ -155,7 +155,7 @@ function App( canvas ) {
 
         if ( _renderer === undefined ) {
 
-          _renderer = new THREE.WebGLRenderer( { canvas: this.canvas, antialias: true } );
+          _renderer = new THREE.WebGLRenderer( { canvas: this.canvas, antialias: true, alpha: true } );
           _renderer.setPixelRatio( window.devicePixelRatio );
           _renderer.setSize( this.canvas.clientWidth, this.canvas.clientHeight, false );
 
