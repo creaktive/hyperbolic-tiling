@@ -66,6 +66,9 @@ class Main {
     });
 
     self.app.play();
+
+    self.cycleLength = 120;
+    self.frameCount = 0;
   }
 
   initPQControls() {
@@ -249,11 +252,17 @@ class Main {
     }
 
     const draw = (currentTimestamp) => {
-      this.pattern[0].uniforms['u_time'].value = currentTimestamp / 1000;
-      this.pattern[1].uniforms['u_time'].value = currentTimestamp / -1000;
+      this.tween()
       window.requestAnimationFrame(draw);
     };
     window.requestAnimationFrame(draw);
+  }
+
+  tween() {
+    const phase = this.frameCount / this.cycleLength;
+    this.pattern[0].uniforms['u_time'].value = Math.sin(phase);
+    this.pattern[1].uniforms['u_time'].value = Math.cos(phase);
+    this.frameCount++;
   }
 }
 
