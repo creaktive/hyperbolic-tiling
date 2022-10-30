@@ -140,16 +140,18 @@ class Main {
     });
   }
 
-  initImageDownloader() {
-    const self = this;
+  downloadScreenshot(n) {
+    const suffix = n != null ? `-${ n }` : '';
+    const a = document.createElement('a');
+    a.href = this.app.takeScreenshot(1024, 1024).src;
+    a.download = `hyperbolic-tiling-p${ this.spec.p }-q${ this.spec.q }${ suffix }.png`;
+    a.click();
+  }
 
+  initImageDownloader() {
     document.querySelector('#canvas').addEventListener('click', (e) => {
       e.preventDefault();
-
-      const a = document.createElement('a');
-      a.href = self.app.takeScreenshot(1024, 1024).src;
-      a.download = `hyperbolic-tiling-p${ self.spec.p }-q${ self.spec.q }.png`;
-      a.click();
+      this.downloadScreenshot()
     });
   }
 
