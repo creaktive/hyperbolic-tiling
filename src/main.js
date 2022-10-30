@@ -67,7 +67,7 @@ class Main {
 
     self.app.play();
 
-    self.cycleLength = 120;
+    self.cycleLength = 600;
     self.frameCount = 0;
   }
 
@@ -261,10 +261,11 @@ class Main {
   }
 
   tween() {
-    const phase = this.frameCount / this.cycleLength;
+    const phase = 2 * Math.PI * this.frameCount / this.cycleLength;
     this.pattern[0].uniforms['u_time'].value = Math.sin(phase);
     this.pattern[1].uniforms['u_time'].value = Math.cos(phase);
     this.frameCount++;
+    // this.downloadScreenshot(this.frameCount)
   }
 }
 
