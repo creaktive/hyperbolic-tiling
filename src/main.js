@@ -265,7 +265,9 @@ class Main {
     this.pattern[0].uniforms['u_time'].value = Math.sin(phase);
     this.pattern[1].uniforms['u_time'].value = Math.cos(phase);
     this.frameCount++;
-    // this.downloadScreenshot(this.frameCount)
+    // if (this.frameCount <= this.cycleLength) {
+    //   this.downloadScreenshot(this.frameCount);
+    // }
   }
 }
 
